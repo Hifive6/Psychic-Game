@@ -31,30 +31,41 @@
     var guess = 9;
     var letterPick = [];
 
+
+var generateComputerGuess = function(){
+return computerChoice[Math.floor(Math.random() * computerChoice.length)]
+}
+var comGuess = generateComputerGuess();
+    console.log(comGuess);
 //I believe this is where the user will make the browser respond to letting go of a key//
 document.onkeyup = function(event){
 //These are the variables we are defining for  the game, event.key will make trigger the event of releasing the key
 //the second variable is for the math to pick a random number or letter from the array at the top//
     var userGuess = event.key;
 
-    var comGuess = comChoice[Math.floor(Math.random() * comChoice.lenth)];
+    
+    
 //this is an array where the user will get there guess from//
-    var myPick = ["q" , "w" , "e" , "r" , "t", "u", "i", "o", "p","a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m",]
+    var myPick = ["q" , "w" , "e" , "r" , "t", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m",];
 
 
-//this if statement is not pulling the users guess from this array above?//
+//this if statement is now pulling the users guess from this array above?//
     if (myPick.indexOf(userGuess) > -1) {
+        console.log(userGuess);
+        console.log(comGuess);
 //this if statement is saying if the user picks the computer choice//
-//then the wins go up by 1, the guess resets to 10, and letters picks are left the bracket//
-       if (userGuess === comChoice){
+//then the wins go up by 1, the guess resets to 9, and letters picks are left the bracket//
+       if (userGuess === comGuess){
+           console.log("we won");
+           comGuess = generateComputerGuess();
            wins++;
-           guess = 10;
+           guess = 9;
            letterPick = [];
        } 
 //this if statement is saying if the user and the computer to do match the guess//
 //then the guess counter will go down by one, and the letter that the user guess//
 //will be pushed into the bracket of the the var letter pick//
-        if (userGuess !== comChoice){
+        if (userGuess !== comGuess){
             guess --;
             letterPick.push(userGuess);
         }
@@ -62,6 +73,7 @@ document.onkeyup = function(event){
 //then the guess counter resets to 10, the loses go down by one//
 //the letter pick bracket will be reset to empty//
         if (guess === 0){
+            comGuess = generateComputerGuess();
             guess = 9;
             loses ++;
             letterPick = [];
@@ -79,34 +91,11 @@ document.onkeyup = function(event){
         document.querySelector("#game").innerHTML = html;
         }
     
-    
+ };   
+//Two issues I have found are how to do I stop users from picking the same letter?
+//Did I do something wrong with the code to were the user never wins
 
 
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-};
 
 
 
